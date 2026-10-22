@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Nama Anda</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --accent: #6366f1;
+    --accent-hover: #818cf8;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b0;
+    --card-bg: #1a1a24;
+    --border: rgba(255, 255, 255, 0.08);
+    --gradient: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAVBAR */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+    position: relative;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-primary);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: var(--gradient);
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: 0.3;
+    top: -100px;
+    right: -100px;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+  }
+
+  .hero-content {
+    max-width: 700px;
+    z-index: 1;
+  }
+
+  .hero-content .greeting {
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+
+  .hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .hero-content h1 span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-content .role {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+  }
+
+  .hero-content p {
+    color: var(--text-secondary);
+    margin-bottom: 35px;
+    font-size: 1.05rem;
+  }
+
+  .btn-group { display: flex; gap: 15px; flex-wrap: wrap; }
+
+  .btn {
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background: var(--gradient);
+    color: white;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    background: rgba(99, 102, 241, 0.1);
+  }
+
+  .social-links {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .social-links a {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: 0.3s;
+    border: 1px solid var(--border);
+  }
+
+  .social-links a:hover {
+    background: var(--gradient);
+    color: white;
+    transform: translateY(-3px);
+  }
+
+  /* SECTION COMMON */
+  section { padding: 100px 10%; }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .section-title span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 60px;
+    font-size: 1.05rem;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--bg-secondary);
+  }
+
+  .about-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .about-image {
+    position: relative;
+  }
+
+  .about-image .img-wrapper {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    background: var(--gradient);
+    padding: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-image .img-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: var(--bg-secondary);
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-image .img-wrapper i {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    color: var(--accent);
+    z-index: 1;
+  }
+
+  .about-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .about-text p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .about-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 30px;
+  }
+
+  .info-item {
+    padding: 15px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .info-item .label {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .info-item .value {
+    font-weight: 600;
+    margin-top: 5px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+  }
+
+  .skill-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+  }
+
+  .skill-card i {
+    font-size: 3rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+  }
+
+  .skill-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .skill-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  /* PROJECTS */
+  .projects {
+    background: var(--bg-secondary);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+  }
+
+  .project-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-image {
+    height: 200px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  .project-card:hover .project-image::before { opacity: 1; }
+
+  .project-content {
+    padding: 25px;
+  }
+
+  .project-content h4 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .project-content p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .tag {
+    padding: 5px 12px;
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 15px;
+  }
+
+  .project-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .project-links a:hover { color: var(--accent); }
+
+  /* CONTACT */
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .contact-item i {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .contact-item h5 {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+  }
+
+  .contact-item p { font-weight: 500; }
+
+  .contact-form {
+    background: var(--card-bg);
+    padding: 35px;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg-secondary);
+    padding: 30px 10%;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+
+  footer span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links {
+      position: fixed;
+      top: 70px;
+      right: -100%;
+      flex-direction: column;
+      background: var(--bg-secondary);
+      width: 70%;
+      height: calc(100vh - 70px);
+      padding: 40px;
+      transition: 0.3s;
+    }
+
+    .nav-links.active { right: 0; }
+    .menu-toggle { display: block; }
+
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content .role { font-size: 1.2rem; }
+
+    .about-container,
+    .contact-container {
+      grid-template-columns: 1fr;
+    }
+
+    .about-image { max-width: 300px; margin: 0 auto; }
+    section { padding: 70px 5%; }
+    nav { padding: 15px 5%; }
+    .hero { padding: 0 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">&lt;NamaAnda/&gt;</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Beranda</a></li>
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#skills">Keahlian</a></li>
+    <li><a href="#projects">Proyek</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p class="greeting">👋 Halo, saya</p>
+    <h1>Nama <span>Anda</span></h1>
+    <p class="role">Web Developer & UI/UX Designer</p>
+    <p>Saya membangun pengalaman digital yang indah dan fungsional. Fokus pada pembuatan website modern yang responsif dan user-friendly.</p>
+    <div class="btn-group">
+      <a href="#projects" class="btn btn-primary">
+        Lihat Proyek <i class="fas fa-arrow-right"></i>
+      </a>
+      <a href="#contact" class="btn btn-secondary">
+        Hubungi Saya
+      </a>
+    </div>
+    <div class="social-links">
+      <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <h2 class="section-title fade-in">Tentang <span>Saya</span></h2>
+  <p class="section-subtitle fade-in">Kenali saya lebih dekat</p>
+  <div class="about-container">
+    <div class="about-image fade-in">
+      <div class="img-wrapper">
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+    <div class="about-text fade-in">
+      <h3>Web Developer yang Passionate</h3>
+      <p>Saya adalah seorang developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan aplikasi web. Saya senang memecahkan masalah kompleks dan menciptakan solusi digital yang elegan.</p>
+      <p>Saya percaya bahwa desain yang baik adalah tentang kesederhanaan dan fungsionalitas. Setiap proyek yang saya kerjakan selalu mengutamakan pengalaman pengguna terbaik.</p>
+      <div class="about-info">
+        <div class="info-item">
+          <div class="label">Nama</div>
+          <div class="value">Nama Anda</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Email</div>
+          <div class="value">email@anda.com</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Lokasi</div>
+          <div class="value">Jakarta, Indonesia</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Status</div>
+          <div class="value">Tersedia untuk Freelance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2 class="section-title fade-in">Keahlian <span>Saya</span></h2>
+  <p class="section-subtitle fade-in">Teknologi yang saya kuasai</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <i class="fab fa-html5"></i>
+      <h4>HTML & CSS</h4>
+      <p>Membangun struktur dan styling website modern</p>
+    </div>
+    <div class="skill-card fade-in">
+      <i class="fab fa-js"></i>
+      <h4>JavaScript</h4>
+      <p>Interaktivitas dan logika aplikasi web</p>
+    </div>
+    <div class="skill-card fade-in">
+      <i class="fab fa-react"></i>
+      <h4>React</h4>
+      <p>Membangun UI komponen yang reusable</p>
+    </div>
+    <div class="skill-card fade-in">
+      <i class="fab fa-node-js"></i>
+      <h4>Node.js</h4>
+      <p>Backend development dan API</p>
+    </div>
+    <div class="skill-card fade-in">
+      <i class="fas fa-paint-brush"></i>
+      <h4>UI/UX Design</h4>
+      <p>Desain antarmuka yang user-friendly</p>
+    </div>
+    <div class="skill-card fade-in">
+      <i class="fas fa-database"></i>
+      <h4>Database</h4>
+      <p>MySQL, MongoDB, PostgreSQL</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <h2 class="section-title fade-in">Proyek <span>Terbaru</span></h2>
+  <p class="section-subtitle fade-in">Beberapa karya yang telah saya kerjakan</p>
+  <div class="projects-grid">
+    <div class="project-card fade-in">
+      <div class="project-image"><i class="fas fa-shopping-cart"></i></div>
+      <div class="project-content">
+        <h4>E-Commerce Website</h4>
+        <p>Platform jual beli online lengkap dengan sistem pembayaran dan manajemen produk.</p>
+        <div class="project-tags">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">MongoDB</span>
+        </div>
+        <div class="project-links">
+          <a href="#"><i class="fas fa-external-link-alt"></i> Demo</a>
+          <a href="#"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-image"><i class="fas fa-tasks"></i></div>
+      <div class="project-content">
+        <h4>Task Management App</h4>
+        <p>Aplikasi manajemen tugas dengan fitur kolaborasi tim real-time.</p>
+        <div class="project-tags">
+          <span class="tag">Vue.js</span>
+          <span class="tag">Firebase</span>
+        </div>
+        <div class="project-links">
+          <a href="#"><i class="fas fa-external-link-alt"></i> Demo</a>
+          <a href="#"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-image"><i class="fas fa-chart-line"></i></div>
+      <div class="project-content">
+        <h4>Dashboard Analytics</h4>
+        <p>Dashboard interaktif untuk visualisasi data bisnis dengan grafik dinamis.</p>
+        <div class="project-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">Chart.js</span>
+          <span class="tag">Tailwind</span>
+        </div>
+        <div class="project-links">
+          <a href="#"><i class="fas fa-external-link-alt"></i> Demo</a>
+          <a href="#"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-image"><i class="fas fa-mobile-alt"></i></div>
+      <div class="project-content">
+        <h4>Mobile Banking App</h4>
+        <p>Aplikasi mobile banking dengan UI modern dan fitur keamanan tinggi.</p>
+        <div class="project-tags">
+          <span class="tag">React Native</span>
+          <span class="tag">TypeScript</span>
+        </div>
+        <div class="project-links">
+          <a href="#"><i class="fas fa-external-link-alt"></i> Demo</a>
+          <a href="#"><i class="fab fa-github"></i> Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title fade-in">Hubungi <span>Saya</span></h2>
+  <p class="section-subtitle fade-in">Mari berdiskusi tentang proyek Anda</p>
+  <div class="contact-container">
+    <div class="contact-info fade-in">
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <div>
+          <h5>Email</h5>
+          <p>email@anda.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <div>
+          <h5>Telepon</h5>
+          <p>+62 812 3456 7890</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <div>
+          <h5>Lokasi</h5>
+          <p>Jakarta, Indonesia</p>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label>Nama</label>
+        <input type="text" placeholder="Nama lengkap Anda" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="email@anda.com" required>
+      </div>
+      <div class="form-group">
+        <label>Subjek</label>
+        <input type="text" placeholder="Topik pesan" required>
+      </div>
+      <div class="form-group">
+        <label>Pesan</label>
+        <textarea placeholder="Tulis pesan Anda di sini..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+        Kirim Pesan <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Nama Anda</span>. Dibuat dengan ❤️ di Indonesia</p>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('active');
+    });
+  });
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Form handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert('Terima kasih! Pesan Anda telah terkirim. Saya akan segera menghubungi Anda.');
+    e.target.reset();
+  }
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.padding = '12px 10%';
+    } else {
+      nav.style.padding = '20px 10%';
+    }
+  });
+</script>
+
+</body>
+</html>
